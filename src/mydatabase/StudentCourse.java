@@ -24,7 +24,6 @@ public class StudentCourse {
                 command=command+tc;
             }
             command=command+";";
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);
@@ -35,10 +34,8 @@ public class StudentCourse {
                 StudentCourse t=new StudentCourse();
                 t.student_id=rs.getString("student_id");
                 try{
-                    String tcommand="SELECT * FROM course WHERE course_id="+rs.getInt("course_id")+";";
-                    tcommand=new String(tcommand.getBytes(),"UTF-8");
                     PreparedStatement tpStmt=null;
-                    tpStmt=conn.prepareStatement(tcommand);
+                    tpStmt=conn.prepareStatement("SELECT * FROM course WHERE course_id="+rs.getInt("course_id")+";");
                     conn.setAutoCommit(false);
                     conn.commit();
                     ResultSet trs = tpStmt.executeQuery();
@@ -71,14 +68,12 @@ public class StudentCourse {
     /*返回操作在数据库中是否执行了  前两个参数都为必选,第三个参数可选，若score不选则置为0*/
     public boolean insert(String student_id,String course_name,double score){
         boolean result = false;
-        boolean tresult = false;
         try{
             Course a=new Course();
             Stack<Course> stack=a.search(course_name);
 
             String command;
             command="insert into student_course(student_id,course_id) values (?,?)";
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);
@@ -89,24 +84,14 @@ public class StudentCourse {
             conn.commit();
 
             if(score>0){
-                String tcommand;
-                tcommand="insert into student_course(score) values (?)";
-                PreparedStatement tpStmt=null;
-                tpStmt=conn.prepareStatement(tcommand);
-                conn.setAutoCommit(false);
-                tpStmt.setDouble(1,score);
-                tresult = tpStmt.executeUpdate() > 0;
-                tpStmt.close();
-                conn.commit();
-            }
-            else{
-                tresult=true;
+                StudentCourse tttemp=new StudentCourse();
+                tttemp.update(student_id, course_name, score);
             }
         }catch(Exception e){
             // 处理 Class.forName 错误
             e.printStackTrace();
         }
-        return result&&tresult;
+        return result;
     }
 
     /*返回操作在数据库中是否执行了 两个参数皆为可选*/
@@ -141,7 +126,6 @@ public class StudentCourse {
                 pre=true;
             }
             command=command+";";
-            command=new String(command.getBytes(),"UTF-8");
             Statement stmt;
             stmt = conn.createStatement();
             result = stmt.executeUpdate(command) > 0;
@@ -162,7 +146,6 @@ public class StudentCourse {
             Stack<Course> tstack=a.search(course_name);
             String command;
             command="UPDATE student_course SET score=? WHERE student_id=? AND course_id=?;";
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);

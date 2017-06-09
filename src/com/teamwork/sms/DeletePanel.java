@@ -7,10 +7,10 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
-import com.teamwork.sms.insert.*;
+import com.teamwork.sms.delete.*;
 
 @SuppressWarnings("serial")
-public class InsertPanel extends JPanel implements ItemListener {
+public class DeletePanel extends JPanel implements ItemListener {
 
 	final static String STUPANEL = "Student";
 	final static String ACADEMYPANEL = "Academy";
@@ -25,16 +25,16 @@ public class InsertPanel extends JPanel implements ItemListener {
 	JPanel comboBoxPane = null;
 	JComboBox<String> cBox = null;
 	JPanel cardsPanel = null;
-	InsertStudent insertStudent = null;
-	InsertAcademy insertAcademy = null;
-	InsertMajor insertMajor = null;
-	InsertClass insertClass = null;
-	InsertTeacher insertTeacher = null;
-	InsertCourse insertCourse = null;
-	InsertDormitory insertDormitory = null;
-	InsertScore insertScore = null;
+	DeleteStudent deleteStudent = null;
+	DeleteAcademy deleteAcademy = null;
+	DeleteMajor deleteMajor = null;
+	DeleteClass deleteClass = null;
+	DeleteTeacher deleteTeacher = null;
+	DeleteCourse deleteCourse = null;
+	DeleteDormitory deleteDormitory = null;
+	DeleteScore deleteScore = null;
 
-	public InsertPanel() {
+	public DeletePanel() {
 		// Create the JComboBox panel
 		comboBoxPane = new JPanel();
 		cBox = new JComboBox<String>(comboBoxItems);
@@ -44,34 +44,35 @@ public class InsertPanel extends JPanel implements ItemListener {
 
 		// Create the cards panel
 		cardsPanel = new JPanel();
-		insertStudent = new InsertStudent();
-		insertAcademy = new InsertAcademy();
-		insertMajor = new InsertMajor();
-		insertClass = new InsertClass();
-		insertTeacher = new InsertTeacher();
-		insertCourse = new InsertCourse();
-		insertDormitory = new InsertDormitory();
-		insertScore = new InsertScore();
+
+		deleteStudent = new DeleteStudent();
+		deleteAcademy = new DeleteAcademy();
+		deleteMajor = new DeleteMajor();
+		deleteClass = new DeleteClass();
+		deleteTeacher = new DeleteTeacher();
+		deleteCourse = new DeleteCourse();
+		deleteDormitory = new DeleteDormitory();
+		deleteScore = new DeleteScore();
 		cardsPanel = new JPanel(new CardLayout());
-		cardsPanel.add(insertStudent, STUPANEL);
-		cardsPanel.add(insertAcademy, ACADEMYPANEL);
-		cardsPanel.add(insertMajor, MAJORPANEL);
-		cardsPanel.add(insertClass, CLASSPANEL);
-		cardsPanel.add(insertTeacher, TEACHERPANEL);
-		cardsPanel.add(insertCourse, COURSEPANEL);
-		cardsPanel.add(insertDormitory, DOMPANEL);
-		cardsPanel.add(insertScore, SCOREPANEL);
+		cardsPanel.add(deleteStudent, STUPANEL);
+		cardsPanel.add(deleteAcademy, ACADEMYPANEL);
+		cardsPanel.add(deleteMajor, MAJORPANEL);
+		cardsPanel.add(deleteClass, CLASSPANEL);
+		cardsPanel.add(deleteTeacher, TEACHERPANEL);
+		cardsPanel.add(deleteCourse, COURSEPANEL);
+		cardsPanel.add(deleteDormitory, DOMPANEL);
+		cardsPanel.add(deleteScore, SCOREPANEL);
 		setLayout(new BorderLayout());
 		add(comboBoxPane, BorderLayout.NORTH);
 
 		add(cardsPanel, BorderLayout.CENTER);
-
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent evt) {
 		CardLayout cl = (CardLayout) (cardsPanel.getLayout());
 		cl.show(cardsPanel, (String) evt.getItem());
+
 	}
 
 }

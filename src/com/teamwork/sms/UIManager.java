@@ -15,8 +15,8 @@ public class UIManager extends JFrame {
 	JTabbedPane funcPane = null;
 	QueryPanel queryPanel = null;
 	InsertPanel insertPanel = null;
-	JPanel deletePanel = null;
-	JPanel updatePanel = null;
+	DeletePanel deletePanel = null;
+	UpdatePanel updatePanel = null;
 	Database msSQLs = null; 
 
 	public UIManager() {
@@ -27,8 +27,8 @@ public class UIManager extends JFrame {
 		title.add(new JLabel("Student Manage System"));
 		queryPanel = new QueryPanel();
 		insertPanel = new InsertPanel();
-		deletePanel = new JPanel();
-		updatePanel = new JPanel();
+		deletePanel = new DeletePanel();
+		updatePanel = new UpdatePanel();
 		funcPane.add("Query", queryPanel);
 		funcPane.add("Insert", insertPanel);
 		funcPane.add("Delete", deletePanel);

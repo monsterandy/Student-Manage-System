@@ -7,10 +7,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
-import com.teamwork.sms.insert.*;
-
 @SuppressWarnings("serial")
-public class InsertPanel extends JPanel implements ItemListener {
+public class UpdatePanel extends JPanel implements ItemListener {
 
 	final static String STUPANEL = "Student";
 	final static String ACADEMYPANEL = "Academy";
@@ -25,16 +23,16 @@ public class InsertPanel extends JPanel implements ItemListener {
 	JPanel comboBoxPane = null;
 	JComboBox<String> cBox = null;
 	JPanel cardsPanel = null;
-	InsertStudent insertStudent = null;
-	InsertAcademy insertAcademy = null;
-	InsertMajor insertMajor = null;
-	InsertClass insertClass = null;
-	InsertTeacher insertTeacher = null;
-	InsertCourse insertCourse = null;
-	InsertDormitory insertDormitory = null;
-	InsertScore insertScore = null;
+	JPanel updateStudent = null;
+	JPanel updateAcademy = null;
+	JPanel updateMajor = null;
+	JPanel updateClass = null;
+	JPanel updateTeacher = null;
+	JPanel updateCourse = null;
+	JPanel updateDormitory = null;
+	JPanel updateScore = null;
 
-	public InsertPanel() {
+	public UpdatePanel() {
 		// Create the JComboBox panel
 		comboBoxPane = new JPanel();
 		cBox = new JComboBox<String>(comboBoxItems);
@@ -44,28 +42,27 @@ public class InsertPanel extends JPanel implements ItemListener {
 
 		// Create the cards panel
 		cardsPanel = new JPanel();
-		insertStudent = new InsertStudent();
-		insertAcademy = new InsertAcademy();
-		insertMajor = new InsertMajor();
-		insertClass = new InsertClass();
-		insertTeacher = new InsertTeacher();
-		insertCourse = new InsertCourse();
-		insertDormitory = new InsertDormitory();
-		insertScore = new InsertScore();
+		updateStudent = new JPanel();
+		updateAcademy = new JPanel();
+		updateMajor = new JPanel();
+		updateClass = new JPanel();
+		updateTeacher = new JPanel();
+		updateCourse = new JPanel();
+		updateDormitory = new JPanel();
+		updateScore = new JPanel();
 		cardsPanel = new JPanel(new CardLayout());
-		cardsPanel.add(insertStudent, STUPANEL);
-		cardsPanel.add(insertAcademy, ACADEMYPANEL);
-		cardsPanel.add(insertMajor, MAJORPANEL);
-		cardsPanel.add(insertClass, CLASSPANEL);
-		cardsPanel.add(insertTeacher, TEACHERPANEL);
-		cardsPanel.add(insertCourse, COURSEPANEL);
-		cardsPanel.add(insertDormitory, DOMPANEL);
-		cardsPanel.add(insertScore, SCOREPANEL);
+		cardsPanel.add(updateStudent, STUPANEL);
+		cardsPanel.add(updateAcademy, ACADEMYPANEL);
+		cardsPanel.add(updateMajor, MAJORPANEL);
+		cardsPanel.add(updateClass, CLASSPANEL);
+		cardsPanel.add(updateTeacher, TEACHERPANEL);
+		cardsPanel.add(updateCourse, COURSEPANEL);
+		cardsPanel.add(updateDormitory, DOMPANEL);
+		cardsPanel.add(updateScore, SCOREPANEL);
 		setLayout(new BorderLayout());
 		add(comboBoxPane, BorderLayout.NORTH);
 
 		add(cardsPanel, BorderLayout.CENTER);
-
 	}
 
 	@Override

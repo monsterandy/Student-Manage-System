@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import mydatabase.Student;
+
 @SuppressWarnings("serial")
 public class InsertStudent extends JPanel implements ActionListener {
 
@@ -30,8 +32,10 @@ public class InsertStudent extends JPanel implements ActionListener {
 	JLabel stuDormLabel = null;
 	JTextField stuDormText = null;
 	JButton insertButton = null;
+	Student student = null;
 
 	public InsertStudent() {
+		student = new Student();
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
 		stuIDLabel = new JLabel("ID:");
@@ -52,6 +56,7 @@ public class InsertStudent extends JPanel implements ActionListener {
 		stuClassText = new JTextField(3);
 		stuDormText = new JTextField(3);
 		insertButton = new JButton("Insert");
+		insertButton.addActionListener(this);
 
 		stuSexMale = new JRadioButton("Male", true);
 		stuSexFemale = new JRadioButton("Female");
@@ -120,14 +125,75 @@ public class InsertStudent extends JPanel implements ActionListener {
 		layout.putConstraint(SpringLayout.WEST, stuDormText, 20, SpringLayout.EAST, stuDormLabel);
 		layout.putConstraint(SpringLayout.NORTH, stuDormText, 10, SpringLayout.SOUTH, stuNationText);
 
-		layout.putConstraint(SpringLayout.WEST, insertButton, 190, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.WEST, insertButton, 200, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, insertButton, 40, SpringLayout.SOUTH, stuDormLabel);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
+		if (e.getSource() == insertButton) {
+			String id;
+			String name;
+			int year = 2015;
+			String sex;
+			String birthday;
+			String nation;
+			String class_name;
+			String dormitory_name;
+			if ((id = stuIDText.getText().trim()) == null || stuIDText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student ID!");
+				return;
+			}
+			if ((name = stuNameText.getText().trim()) == null || stuNameText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Name!");
+				return;
+			}
+			if (stuYearText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Year!");
+				return;
+			} else {
+				year = Integer.parseInt(stuYearText.getText().trim());
+			}
+			if (stuSexMale.isSelected()) {
+				sex = "男";
+			} else {
+				sex = "女";
+			}
+			if (stuBirthYearText.getText().trim().equals("") || stuBirthMonthText.getText().trim().equals("")
+					|| stuBirthDayText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Birthday!");
+				return;
+			} else {
+				birthday = stuBirthYearText.getText().trim() + "-" + stuBirthMonthText.getText().trim() + "-"
+						+ stuBirthDayText.getText().trim();
+			}
+			if ((nation = stuNationText.getText().trim()) == null || stuNationText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Nation!");
+				return;
+			}
+			if ((class_name = stuClassText.getText().trim()) == null || stuClassText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Class!");
+				return;
+			}
+			if ((dormitory_name = stuDormText.getText().trim()) == null || stuDormText.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(null, "Empty Student Dormitory!");
+				return;
+			}
+			if (student.insert(id, name, year, sex, birthday, nation, class_name, dormitory_name)) {
+				JOptionPane.showMessageDialog(null, "Insert Success!");
+				stuIDText.setText(null);
+				stuNameText.setText(null);
+				stuYearText.setText(null);
+				stuBirthYearText.setText(null);
+				stuBirthMonthText.setText(null);
+				stuBirthDayText.setText(null);
+				stuNationText.setText(null);
+				stuClassText.setText(null);
+				stuDormText.setText(null);
+			} else {
+				JOptionPane.showMessageDialog(null, "Unknow Error!");
+			}
+		}
 	}
 
 }
