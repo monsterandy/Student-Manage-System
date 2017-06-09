@@ -7,6 +7,8 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
+import com.teamwork.sms.update.*;
+
 @SuppressWarnings("serial")
 public class UpdatePanel extends JPanel implements ItemListener {
 
@@ -23,7 +25,7 @@ public class UpdatePanel extends JPanel implements ItemListener {
 	JPanel comboBoxPane = null;
 	JComboBox<String> cBox = null;
 	JPanel cardsPanel = null;
-	JPanel updateStudent = null;
+	UpdateStudent updateStudent = null;
 	JPanel updateAcademy = null;
 	JPanel updateMajor = null;
 	JPanel updateClass = null;
@@ -42,7 +44,7 @@ public class UpdatePanel extends JPanel implements ItemListener {
 
 		// Create the cards panel
 		cardsPanel = new JPanel();
-		updateStudent = new JPanel();
+		updateStudent = new UpdateStudent();
 		updateAcademy = new JPanel();
 		updateMajor = new JPanel();
 		updateClass = new JPanel();
