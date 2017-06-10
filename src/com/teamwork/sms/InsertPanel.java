@@ -9,6 +9,10 @@ import javax.swing.*;
 
 import com.teamwork.sms.insert.*;
 
+/**
+ * @author MonsterAndy
+ * @see Class InsertPanel implements the insert part
+ */
 @SuppressWarnings("serial")
 public class InsertPanel extends JPanel implements ItemListener {
 

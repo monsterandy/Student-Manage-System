@@ -35,7 +35,6 @@ public class Academy {
                 flag=true;
             }
             command=command+";";
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);
@@ -65,7 +64,6 @@ public class Academy {
         try{
             String command;
             command="insert into academy(academy_name,academy_leader) values (?,?)";
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);
@@ -85,6 +83,29 @@ public class Academy {
     public boolean delete(String name,String leader){
         boolean result = false;
         try{
+            Stack<Academy> stack = new Stack<Academy>();
+            stack=this.search(name, leader);
+            if(stack.empty()){
+                String teacher;
+                teacher="DELETE FROM teacher;";
+                Statement stmt;
+                stmt = conn.createStatement();
+                stmt.executeUpdate(teacher);
+                stmt.close();
+                conn.commit();
+            }
+            else{
+                while(!stack.empty()){
+                    String teacher;
+                    teacher="DELETE FROM teacher WHERE academy_id="+stack.pop().id+";";
+                    Statement stmt;
+                    stmt = conn.createStatement();
+                    stmt.executeUpdate(teacher);
+                    stmt.close();
+                    conn.commit();
+                }
+            }
+
             boolean flag=false;
             String command;
             command="DELETE FROM academy";
@@ -108,7 +129,6 @@ public class Academy {
                 flag=true;
             }
             command=command+";";
-            command=new String(command.getBytes(),"UTF-8");
             Statement stmt;
             stmt = conn.createStatement();
             result = stmt.executeUpdate(command) > 0;
@@ -146,7 +166,6 @@ public class Academy {
             }
             String tc=" WHERE academy_name=?";
             command=command+tc;
-            command=new String(command.getBytes(),"UTF-8");
             PreparedStatement pStmt=null;
             pStmt=conn.prepareStatement(command);
             conn.setAutoCommit(false);

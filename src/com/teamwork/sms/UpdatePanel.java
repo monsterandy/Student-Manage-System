@@ -9,6 +9,10 @@ import javax.swing.*;
 
 import com.teamwork.sms.update.*;
 
+/**
+ * @author MonsterAndy
+ * @see Class UpdatePanel implements the update part
+ */
 @SuppressWarnings("serial")
 public class UpdatePanel extends JPanel implements ItemListener {
 
@@ -26,13 +30,13 @@ public class UpdatePanel extends JPanel implements ItemListener {
 	JComboBox<String> cBox = null;
 	JPanel cardsPanel = null;
 	UpdateStudent updateStudent = null;
-	JPanel updateAcademy = null;
-	JPanel updateMajor = null;
-	JPanel updateClass = null;
-	JPanel updateTeacher = null;
-	JPanel updateCourse = null;
-	JPanel updateDormitory = null;
-	JPanel updateScore = null;
+	UpdateAcademy updateAcademy = null;
+	UpdateMajor updateMajor = null;
+	UpdateClass updateClass = null;
+	UpdateTeacher updateTeacher = null;
+	UpdateCourse updateCourse = null;
+	UpdateDormitory updateDormitory = null;
+	UpdateScore updateScore = null;
 
 	public UpdatePanel() {
 		// Create the JComboBox panel
@@ -45,13 +49,13 @@ public class UpdatePanel extends JPanel implements ItemListener {
 		// Create the cards panel
 		cardsPanel = new JPanel();
 		updateStudent = new UpdateStudent();
-		updateAcademy = new JPanel();
-		updateMajor = new JPanel();
-		updateClass = new JPanel();
-		updateTeacher = new JPanel();
-		updateCourse = new JPanel();
-		updateDormitory = new JPanel();
-		updateScore = new JPanel();
+		updateAcademy = new UpdateAcademy();
+		updateMajor = new UpdateMajor();
+		updateClass = new UpdateClass();
+		updateTeacher = new UpdateTeacher();
+		updateCourse = new UpdateCourse();
+		updateDormitory = new UpdateDormitory();
+		updateScore = new UpdateScore();
 		cardsPanel = new JPanel(new CardLayout());
 		cardsPanel.add(updateStudent, STUPANEL);
 		cardsPanel.add(updateAcademy, ACADEMYPANEL);

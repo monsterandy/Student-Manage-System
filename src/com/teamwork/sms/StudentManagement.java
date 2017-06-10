@@ -1,8 +1,8 @@
 package com.teamwork.sms;
 
 /**
- * @author MonsterAndy
- *  Class StudentManagement implements the hole program
+ * @author MonsterAndy 
+ * @see Class StudentManagement implements the hole program
  */
 public class StudentManagement {
 

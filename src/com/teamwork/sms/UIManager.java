@@ -6,6 +6,10 @@ import javax.swing.*;
 
 import mydatabase.Database;
 
+/**
+ * @author MonsterAndy
+ * @see Class UIManager implements the window frame
+ */
 @SuppressWarnings("serial")
 public class UIManager extends JFrame {
 

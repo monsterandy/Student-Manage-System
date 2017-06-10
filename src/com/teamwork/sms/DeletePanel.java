@@ -9,6 +9,10 @@ import javax.swing.*;
 
 import com.teamwork.sms.delete.*;
 
+/**
+ * @author MonsterAndy
+ * @see Class DeletePanel implements the delete part
+ */
 @SuppressWarnings("serial")
 public class DeletePanel extends JPanel implements ItemListener {
 

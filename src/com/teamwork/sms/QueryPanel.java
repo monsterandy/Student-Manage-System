@@ -9,6 +9,10 @@ import javax.swing.*;
 
 import com.teamwork.sms.query.*;
 
+/**
+ * @author MonsterAndy
+ * @see Class QueryPanel implements the query part
+ */
 @SuppressWarnings("serial")
 public class QueryPanel extends JPanel implements ItemListener {
 

@@ -1,4 +1,4 @@
-package com.teamwork.sms.insert;
+package com.teamwork.sms.update;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +8,7 @@ import javax.swing.*;
 import mydatabase.StudentCourse;
 
 @SuppressWarnings("serial")
-public class InsertScore extends JPanel implements ActionListener {
+public class UpdateScore extends JPanel implements ActionListener {
 
 	JLabel stuIDLabel = null;
 	JTextField stuIDText = null;
@@ -16,28 +16,28 @@ public class InsertScore extends JPanel implements ActionListener {
 	JTextField courseNameText = null;
 	JLabel scoreLabel = null;
 	JTextField scoreText = null;
-	JButton insertButton = null;
+	JButton updateButton = null;
 	StudentCourse studentCourse = null;
 
-	public InsertScore() {
+	public UpdateScore() {
 		studentCourse = new StudentCourse();
 		SpringLayout layout = new SpringLayout();
 		setLayout(layout);
-		stuIDLabel = new JLabel("Student ID:");
-		courseNameLabel = new JLabel("Course Name:");
+		stuIDLabel = new JLabel("* Student ID:");
+		courseNameLabel = new JLabel("* Course Name:");
 		scoreLabel = new JLabel("Score:");
 		stuIDText = new JTextField(12);
 		courseNameText = new JTextField(12);
 		scoreText = new JTextField(12);
-		insertButton = new JButton("Insert");
-		insertButton.addActionListener(this);
+		updateButton = new JButton("Update");
+		updateButton.addActionListener(this);
 		add(stuIDLabel);
 		add(stuIDText);
 		add(courseNameLabel);
 		add(courseNameText);
 		add(scoreLabel);
 		add(scoreText);
-		add(insertButton);
+		add(updateButton);
 
 		layout.putConstraint(SpringLayout.WEST, stuIDLabel, 120, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, stuIDLabel, 10, SpringLayout.NORTH, this);
@@ -48,19 +48,19 @@ public class InsertScore extends JPanel implements ActionListener {
 		layout.putConstraint(SpringLayout.WEST, courseNameText, 10, SpringLayout.EAST, courseNameLabel);
 		layout.putConstraint(SpringLayout.NORTH, courseNameText, 10, SpringLayout.SOUTH, stuIDText);
 
-		layout.putConstraint(SpringLayout.WEST, scoreLabel, 152, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.WEST, scoreLabel, 162, SpringLayout.WEST, this);
 		layout.putConstraint(SpringLayout.NORTH, scoreLabel, 20, SpringLayout.SOUTH, courseNameLabel);
 		layout.putConstraint(SpringLayout.WEST, scoreText, 10, SpringLayout.EAST, scoreLabel);
 		layout.putConstraint(SpringLayout.NORTH, scoreText, 10, SpringLayout.SOUTH, courseNameText);
 
-		layout.putConstraint(SpringLayout.WEST, insertButton, 193, SpringLayout.WEST, this);
-		layout.putConstraint(SpringLayout.NORTH, insertButton, 30, SpringLayout.SOUTH, scoreLabel);
+		layout.putConstraint(SpringLayout.WEST, updateButton, 193, SpringLayout.WEST, this);
+		layout.putConstraint(SpringLayout.NORTH, updateButton, 30, SpringLayout.SOUTH, scoreLabel);
 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == insertButton) {
+		if (e.getSource() == updateButton) {
 			String student_id;
 			String course_name;
 			double score;
@@ -73,15 +73,13 @@ public class InsertScore extends JPanel implements ActionListener {
 				return;
 			}
 			if (scoreText.getText().trim().equals("")) {
-				JOptionPane.showMessageDialog(null, "Empty Course Score!");
+				JOptionPane.showMessageDialog(null, "Nothing Updated!");
 				return;
 			} else {
 				score = Double.parseDouble(scoreText.getText().trim());
 			}
-			if (studentCourse.insert(student_id, course_name, score)) {
-				JOptionPane.showMessageDialog(null, "Insert Success!");
-				stuIDText.setText(null);
-				courseNameText.setText(null);
+			if (studentCourse.update(student_id, course_name, score)) {
+				JOptionPane.showMessageDialog(null, "Update Success!");
 				scoreText.setText(null);
 			} else {
 				JOptionPane.showMessageDialog(null, "Unknow Error!");
