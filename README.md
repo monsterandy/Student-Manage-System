@@ -8,3 +8,5 @@ Then modify the *SQLUSER* and *SQLPASSWD* at the **UIManager.java** in *com.team
 You can change the hostname at the **Database.java** in *mydatabase* package.
 
 the **database.sql** is the file that create the database, please use the Microsoft SQL Sever.
+
+**Please set the project encoding to UTF-8.**
